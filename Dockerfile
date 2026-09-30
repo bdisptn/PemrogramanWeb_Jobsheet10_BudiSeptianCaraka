@@ -7,7 +7,7 @@ COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr
 RUN install-php-extensions pdo_pgsql \
     && a2enmod rewrite
 
-WORKDIR /var/www/html
-COPY . /var/www/html/
+WORKDIR /var/www/php
+COPY . /var/www/php/
 
 EXPOSE 80
