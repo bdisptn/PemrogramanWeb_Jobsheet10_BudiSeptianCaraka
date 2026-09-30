@@ -1,0 +1,376 @@
+@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap');
+
+/* ===== Variable & Theme (AbsenUKM) ===== */
+:root {
+  --ink: #142136;
+  --ink-dark: #0d1626;
+  --gold: #c89b3c;
+  --gold-soft: #e4c778;
+  --bg: #eef0ec;
+  --surface: #fbfbf9;
+  --text: #2b2f36;
+  --muted: #6b7280;
+  --border: #d8d6cc;
+  --row-tint: #f2f1ea;
+
+  /* Status Validasi Error & Notifikasi */
+  --danger: #dc2626;
+  --danger-bg: #fee2e2;
+
+  --font-heading: 'Zilla Slab', Georgia, serif;
+  --font-body: 'Work Sans', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ===== Header & Navigasi (Tengah & Rapi) ===== */
+header {
+  background: var(--ink);
+  color: #fff;
+  padding: 1.25rem;
+  border-bottom: 4px solid var(--gold);
+  text-align: center; /* Judul AbsenUKM Rata Tengah */
+}
+
+header h1 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  text-align: center;
+}
+
+header p {
+  margin: 0.25rem 0 0;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+nav {
+  background: var(--ink-dark);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  justify-content: center;
+  align-items: center; /* Memastikan semua elemen nav sejajar vertikal */
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+nav a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+
+nav a:hover {
+  color: var(--gold-soft);
+  border-bottom-color: var(--gold);
+}
+
+/* Badge Nama Petugas & Tombol Logout Sejajar (Inline Flex) */
+.user-info, .user-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.12);
+  padding: 0.35rem 0.85rem;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.88rem;
+  margin-left: 0.5rem;
+}
+
+.user-info strong, .user-badge strong {
+  color: var(--gold-soft);
+}
+
+/* Tombol Logout & Login Khusus */
+.btn-logout {
+  background-color: var(--danger);
+  color: #ffffff !important;
+  padding: 0.3rem 0.75rem !important;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: none !important;
+  transition: background-color 0.2s ease;
+}
+
+.btn-logout:hover {
+  background-color: #b91c1c;
+}
+
+.btn-login {
+  background-color: var(--gold);
+  color: var(--ink) !important;
+  padding: 0.35rem 0.85rem !important;
+  border-radius: 4px;
+  font-weight: 600;
+  border-bottom: none !important;
+}
+
+.btn-login:hover {
+  background-color: var(--gold-soft);
+}
+
+/* Hide Hamburger di Desktop */
+.menu-button,
+.nav-toggle-label,
+#nav-toggle-btn {
+  display: none;
+}
+
+/* ===== Main Layout ===== */
+main {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+section h2 {
+  margin: 0 0 1rem;
+  padding-bottom: 0.5rem;
+  font-family: var(--font-heading);
+  color: var(--ink);
+  border-bottom: 2px solid var(--gold);
+}
+
+/* ===== Search Box & Tabel ===== */
+.search-box input,
+input[data-tabel] {
+  width: 100%;
+  max-width: 360px;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.search-box input:focus,
+input[data-tabel]:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th {
+  background: var(--ink);
+  color: #fff;
+  padding: 0.7rem 0.85rem;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+tbody td {
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.92rem;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--row-tint);
+}
+
+.baris-kosong td {
+  text-align: center;
+  color: var(--muted);
+  font-style: italic;
+  padding: 1.25rem !important;
+  background: var(--surface) !important;
+}
+
+/* Tombol Hapus Tabel */
+.btn-hapus {
+  background-color: var(--danger-bg);
+  color: var(--danger);
+  border: 1px solid #fca5a5;
+  padding: 0.35rem 0.7rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.82rem;
+}
+
+/* ===== Form & Status Error Inline ===== */
+form p {
+  margin: 1rem 0 0;
+}
+
+label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 0.5rem 0.2rem;
+  border: none;
+  border-bottom: 2px solid var(--border);
+  background: transparent;
+  font: inherit;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-bottom-color: var(--gold);
+}
+
+/* Standard Visual Error Jobsheet 5 */
+.input-error {
+  border-bottom-color: var(--danger) !important;
+}
+
+.pesan-error {
+  display: block;
+  color: var(--danger);
+  font-size: 0.82rem;
+  margin-top: 0.3rem;
+  font-weight: 500;
+}
+
+button[type="submit"] {
+  background: var(--ink);
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+/* ===== Footer (Tengah & Rapi) ===== */
+footer, .main-footer {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  background: var(--ink);
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: 3rem;
+  font-size: 0.88rem;
+  border-top: 3px solid var(--gold);
+}
+
+footer p, .main-footer p {
+  margin: 0;
+  text-align: center;
+}
+
+/* ===== Responsive Mobile (<768px) ===== */
+@media (max-width: 768px) {
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .menu-button,
+  .nav-toggle-label,
+  #nav-toggle-btn {
+    display: inline-block !important;
+    background: transparent !important;
+    border: 1px solid rgba(255,255,255,0.3) !important;
+    color: #fff !important;
+    padding: 0.4rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  nav {
+    display: none;
+    width: 100%;
+    margin-top: 0.75rem;
+  }
+
+  nav.nav-open {
+    display: block !important;
+  }
+
+  nav ul {
+    flex-direction: column;
+  }
+
+  nav a {
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .user-info, .user-badge {
+    margin-left: 0;
+    margin-top: 0.5rem;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ===== Alert Flash Message ===== */
+.alert {
+  padding: 0.85rem 1.25rem;
+  margin-bottom: 1.25rem;
+  border-radius: 4px;
+  font-size: 0.92rem;
+}
+
+.alert-success {
+  background-color: #d1fae5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.alert-danger {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+
+.btn-tambah {
+  display: inline-block;
+  background-color: var(--gold);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.btn-tambah:hover {
+  background-color: var(--ink);
+}

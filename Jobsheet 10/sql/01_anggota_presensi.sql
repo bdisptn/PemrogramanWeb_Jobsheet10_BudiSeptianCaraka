@@ -1,0 +1,21 @@
+-- DDL Tabel Anggota
+CREATE TABLE IF NOT EXISTS anggota (
+    id SERIAL PRIMARY KEY,
+    nim VARCHAR(20) NOT NULL UNIQUE,
+    nama VARCHAR(100) NOT NULL,
+    ukm VARCHAR(100) NOT NULL,
+    jabatan VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- DDL Tabel Presensi
+CREATE TABLE IF NOT EXISTS presensi (
+    id SERIAL PRIMARY KEY,
+    nim VARCHAR(20) NOT NULL,
+    nama VARCHAR(100) NOT NULL,
+    kegiatan VARCHAR(150) NOT NULL,
+    tanggal DATE NOT NULL,
+    status VARCHAR(20) NOT NULL,
+    poin INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
