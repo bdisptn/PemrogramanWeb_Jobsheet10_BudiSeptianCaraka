@@ -6,9 +6,11 @@ RUN apt-get update \
     && docker-php-ext-install pdo_pgsql \
     && rm -rf /var/lib/apt/lists/*
 
-# 2. Hapus PAKSA semua modul MPM yang aktif, lalu aktifkan HANYA mpm_prefork & rewrite
-RUN rm -f /etc/apache2/mods-enabled/mpm_*.load /etc/apache2/mods-enabled/mpm_*.conf \
-    && a2enmod mpm_prefork rewrite
+# 2. Bersihkan seluruh symlink MPM dan aktifkan HANYA mpm_prefork
+RUN rm -f /etc/apache2/mods-enabled/mpm_* \
+    && ln -s /etc/apache2/mods-available/mpm_prefork.load /etc/apache2/mods-enabled/ \
+    && ln -s /etc/apache2/mods-available/mpm_prefork.conf /etc/apache2/mods-enabled/ \
+    && a2enmod rewrite
 
 WORKDIR /var/www/html
 COPY . /var/www/html/
