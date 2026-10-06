@@ -1,15 +1,17 @@
-FROM php:8.3-apache
+FROM php:8.3-fpm-alpine
 
-# 1. Install ekstensi PostgreSQL dengan helper resmi
-COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
-RUN install-php-extensions pdo_pgsql \
-    && a2enmod rewrite
+RUN apk add --no-cache nginx supervisor gettext-envsubst libpq \
+    && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS postgresql-dev \
+    && docker-php-ext-install pdo_pgsql \
+    && apk del .build-deps
 
-# 2. Sesuaikan konfigurasi Apache agar mau mendengarkan PORT dinamis dari Railway
 ENV PORT=80
-RUN sed -i 's/80/${PORT}/g' /etc/apache2/ports.conf /etc/apache2/sites-available/*.conf
 
 WORKDIR /var/www/html
 COPY . /var/www/html/
+COPY nginx/default.conf.template /etc/nginx/templates/default.conf.template
+COPY nginx/supervisord.conf /etc/supervisord.conf
 
 EXPOSE 80
+
+CMD ["/bin/sh", "-c", "envsubst '$PORT' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf && exec /usr/bin/supervisord -c /etc/supervisord.conf"]
